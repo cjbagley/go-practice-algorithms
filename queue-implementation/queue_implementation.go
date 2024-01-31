@@ -1,16 +1,14 @@
 package queueimplementation
 
-import "fmt"
-
 type QueueNode struct {
 	value int
-	next  string
+	next  *QueueNode
 }
 
 type Queue struct {
 	Length int
-	head   QueueNode
-	tail   QueueNode
+	head   *QueueNode
+	tail   *QueueNode
 }
 
 func NewQueue() *Queue {
@@ -18,17 +16,36 @@ func NewQueue() *Queue {
 }
 
 func (q *Queue) Enqueue(value int) {
-	fmt.Println("ENQ")
+	q.Length++
+	node := &QueueNode{
+		value: value,
+		next:  nil,
+	}
+	if q.head == nil {
+		q.head = node
+		q.tail = node
+	}
+
+	q.tail.next = node
+	q.tail = node
 }
 
 func (q *Queue) Dequeue() (int, bool) {
-	fmt.Println("DEQ")
-	return q.head.value, false
+	if q.head == nil {
+		return 0, false
+	}
+
+	head := q.head
+	q.head = head.next
+	head.next = nil
+	q.Length--
+
+	return head.value, true
 }
 
 func (q *Queue) Peek() (int, bool) {
-	if q.Length == 0 {
+	if q.head == nil {
 		return 0, false
 	}
-	return q.head.value, false
+	return q.head.value, true
 }

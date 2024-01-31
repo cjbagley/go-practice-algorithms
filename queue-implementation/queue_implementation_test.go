@@ -9,6 +9,7 @@ func TestQueue(t *testing.T) {
 
 	queue := NewQueue()
 	queue.Enqueue(5)
+
 	queue.Enqueue(7)
 	queue.Enqueue(9)
 
