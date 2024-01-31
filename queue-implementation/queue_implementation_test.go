@@ -7,7 +7,7 @@ import (
 func TestQueue(t *testing.T) {
 	errorMsg := "Expected %d', got %d"
 
-	queue := NewQueue[int]()
+	queue := NewQueue()
 	queue.Enqueue(5)
 	queue.Enqueue(7)
 	queue.Enqueue(9)

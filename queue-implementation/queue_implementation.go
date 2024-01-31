@@ -2,31 +2,33 @@ package queueimplementation
 
 import "fmt"
 
-type QueueNode[T any] struct {
-	value T
+type QueueNode struct {
+	value int
 	next  string
 }
 
-type Queue[T any] struct {
+type Queue struct {
 	Length int
-	head   QueueNode[T]
-	tail   QueueNode[T]
+	head   QueueNode
+	tail   QueueNode
 }
 
-func NewQueue[T any]() *Queue[T] {
-	return &Queue[T]{}
+func NewQueue() *Queue {
+	return &Queue{}
 }
 
-func (q *Queue[T]) Enqueue(item T) {
+func (q *Queue) Enqueue(value int) {
 	fmt.Println("ENQ")
 }
 
-func (q *Queue[T]) Dequeue() (T, bool) {
+func (q *Queue) Dequeue() (int, bool) {
 	fmt.Println("DEQ")
 	return q.head.value, false
 }
 
-func (q *Queue[T]) Peek() (T, bool) {
-	fmt.Println("Peek")
+func (q *Queue) Peek() (int, bool) {
+	if q.Length == 0 {
+		return 0, false
+	}
 	return q.head.value, false
 }
